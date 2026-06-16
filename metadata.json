@@ -1,0 +1,8 @@
+{
+  "name": "Remix: חנות מותגי יוקרה",
+  "description": "אתר מכירות דרופשיפינג למותגי יוקרה בעיצוב פרימיום כולל מערכת עגלה וסליקה",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
