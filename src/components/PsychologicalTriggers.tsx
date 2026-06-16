@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ShoppingBag, Clock, Sparkles, Eye, Flame, Zap, Award, Bell, Shield, X, HelpCircle } from 'lucide-react';
+import { ShoppingBag, Clock, Sparkles, Eye, Flame, Zap, Award, Bell, Shield, X } from 'lucide-react';
 import { Product } from '../types';
 import { products } from '../data';
 
@@ -26,9 +26,6 @@ export default function PsychologicalTriggers({ cartCount, onOpenCart, onAddToCa
 
   // Inactivity Timer
   const [isInactive, setIsInactive] = useState(false);
-
-  // Automation Control Panel open state
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   // VIP Cart Expiry Countdown Timer
   const [cartSecondsLeft, setCartSecondsLeft] = useState(900); // 15 mins default
@@ -239,82 +236,6 @@ export default function PsychologicalTriggers({ cartCount, onOpenCart, onAddToCa
         </div>
       )}
 
-      {/* 3. FLOATING DIAGNOSTIC SIMULATOR PANEL (Bottom Left / Toggleable) */}
-      <div className="fixed bottom-6 right-6 z-40 font-sans" dir="rtl">
-        {/* Toggle Button */}
-        <button
-          onClick={() => setIsPanelOpen(!isPanelOpen)}
-          className="flex items-center gap-2 bg-charcoal-900 hover:bg-black border border-gold-500/40 hover:border-gold-500 text-gold-500 px-4 py-2.5 rounded-full shadow-lg transition-all duration-300 text-xs font-medium group"
-        >
-          <div className="w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse"></div>
-          <span>בוחן קריאייטיב ואוטומציות</span>
-          <HelpCircle className="w-4 h-4 text-gold-500 group-hover:rotate-12 transition-transform" />
-        </button>
-
-        {/* Panel Content */}
-        {isPanelOpen && (
-          <div className="absolute bottom-14 right-0 bg-charcoal-900 border border-gold-500/30 text-white rounded-lg p-5 shadow-[0_15px_40px_rgba(0,0,0,0.6)] w-80 animate-in slide-in-from-bottom duration-300">
-            <div className="flex items-center justify-between border-b border-charcoal-800 pb-3 mb-4">
-              <h4 className="text-gold-500 text-xs font-bold uppercase tracking-widest">פאנל בקרת אוטומציות פסיכולוגיות</h4>
-              <button 
-                onClick={() => setIsPanelOpen(false)}
-                className="text-gray-500 hover:text-white transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <p className="text-gray-400 text-xs mb-4 leading-relaxed">
-              פאנל זה נועד לאפשר לך לבדוק ולוודא שהעיצוב והאוטומציות המותקנות בחנות עובדות בהתאם להנחיותיך הפסיכולוגיות.
-            </p>
-
-            <div className="space-y-3.5">
-              {/* Simulate FOMO purchase button */}
-              <div>
-                <label className="text-[10px] uppercase font-mono text-gray-500 block mb-1">1. הוכחה חברתית וחשש מהחמצה (FOMO)</label>
-                <button
-                  onClick={triggerFomoToast}
-                  className="w-full bg-black hover:bg-gold-500/10 border border-gold-500/30 text-gold-500 hover:text-white transition-all py-1.5 text-xs font-medium rounded"
-                >
-                  סמלץ התראת רכישה חיה (Toast)
-                </button>
-              </div>
-
-              {/* Simulate exit intent */}
-              <div>
-                <label className="text-[10px] uppercase font-mono text-gray-500 block mb-1">2. מניעת נטישת סל קניות (Loss Aversion)</label>
-                <button
-                  onClick={() => {
-                    // Set temporary product to cart if empty so the validation passes
-                    if (cartCount === 0) {
-                      onAddToCart(products[0]);
-                    }
-                    setTimeout(() => {
-                      setShowExitModal(true);
-                    }, 100);
-                  }}
-                  className="w-full bg-black hover:bg-gold-500/10 border border-gold-500/30 text-gold-500 hover:text-white transition-all py-1.5 text-xs font-medium rounded"
-                >
-                  סמלץ פופ-אפ עזיבה (Exit Intent)
-                </button>
-              </div>
-
-              {/* Accelerate countdown info */}
-              <div className="border-t border-charcoal-800 pt-3">
-                <span className="text-[10px] uppercase font-mono text-gray-500 block mb-1">3. הגבלת זמן ודחיפות בסל הקניות</span>
-                <div className="text-xs text-gray-300 flex items-center justify-between bg-black/40 p-2 rounded border border-charcoal-850">
-                  <span>שדרוג משלוח פוקע בעוד:</span>
-                  <span className="text-gold-500 font-mono font-bold animate-pulse">{formatTime(cartSecondsLeft)}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="border-t border-charcoal-800 mt-4 pt-3 text-[10px] text-gray-500 leading-normal text-center">
-              *כל הבלונים והפופ-אפים מעוצבים בקפידה על פי פלטת הצבעים המלכותית של המותג (זהב, פחם, שחור).
-            </div>
-          </div>
-        )}
-      </div>
     </>
   );
 }
