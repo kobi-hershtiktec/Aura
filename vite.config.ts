@@ -7,7 +7,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: './', // משתמש בנתיב יחסי נוכחי, פותר בעיות 404 ב-GitHub Pages
+  // מגדיר ל-Vite שהאתר והאייקונים יושבים תחת תיקיית Aura ב-GitHub Pages
+  base: '/Aura/', 
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
